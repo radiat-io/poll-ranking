@@ -1,0 +1,3 @@
+[submodule "poll-data"]
+	path = poll-data
+	url = git@github.com:radiat-io/poll-data.git
