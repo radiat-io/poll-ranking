@@ -89,3 +89,20 @@ end
 
   puts "#{publisher[i]}, #{-Math.log(penalties_sum[i]/(penalties_cnt[i]-1), Math::E)}"
 end
+
+# Visualisation
+puts
+require 'json'
+puts(csv.group_by { |row| row['調查單位'] }.map do |name, arr|
+  {
+    name: name,
+    type: 'scatter',
+    data: arr.map do |r|
+      total = 0.0
+      candidates.each do |candidate|
+        total += r[candidate] unless r[candidate].nil?
+      end
+      [r['調查時間'].to_s, (r['蔡英文'] / total) * 100]
+    end,
+  }
+end.to_json)
